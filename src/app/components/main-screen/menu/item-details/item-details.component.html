@@ -7,6 +7,24 @@
     />
     <i class="fa fa-trash me-3 float-end" (click)="deleteItem(item)"></i>
   </div>
+  <form class="filter" [formGroup] = "myForm">
+    <div class="filter-all">
+      <button (click)="getAllItems()">Show all</button>
+    </div>
+    <div class="filter-by-status">
+        <select name="" id=""  formControlName="filter-status" (change)="filter()">
+          <option *ngFor="let state of status" [ngValue]="state.value">
+            {{ state.content }}
+          </option>
+        </select>
+    </div>
+    <div class="filter-by-date">
+      <input type="date" formControlName="filter-date" (change)="filter()"/>
+    </div>
+    <div class="btn-filter">
+      <i class="fa fa-filter"></i>
+    </div>
+  </form>
   <div class="list-items">
     <ul>
       <li *ngFor="let task of item.tasks" [class.isDone]="task.isDone">

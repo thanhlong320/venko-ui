@@ -23,6 +23,19 @@ export class ItemEffects {
     );
   });
 
+  filter$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ItemActions.filter),
+      mergeMap((action) =>
+        this.itemService.filter(action.filter).pipe(
+          map((filterItems: Item[]) => {
+            return ItemActions.filterSuccess({ filterItems });
+          })
+        )
+      )
+    );
+  });
+
   updateItem$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ItemActions.updateItem),

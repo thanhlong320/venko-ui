@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { Filter } from 'src/app/core/model/filter';
 import { Item } from 'src/app/core/model/item';
 import { Task } from 'src/app/core/model/task';
 
@@ -10,6 +11,17 @@ export const loadItemsSuccess = createAction(
 );
 
 export const loadItemsFailure = createAction('[Item] Get items failure');
+
+export const filter = createAction(
+  '[Item] Filter',
+  props<{ filter: Filter }>()
+);
+
+export const filterSuccess = createAction(
+  '[Item] Filter success',
+  props<{ filterItems: Item[] }>()
+);
+
 
 export const updateItem = createAction(
   '[Item] Update item',

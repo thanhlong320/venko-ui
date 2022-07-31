@@ -6,6 +6,8 @@ import { Task } from 'src/app/core/model/task';
 import { getItems, State } from 'src/app/state/app/venko.selectors';
 import * as TaskActions from '../../../../state/task/task.actions';
 import * as ItemActions from '../../../../state/item/item.actions';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Filter } from 'src/app/core/model/filter';
 @Component({
   selector: 'app-item-details',
   templateUrl: './item-details.component.html',
@@ -18,12 +20,38 @@ export class ItemDetailsComponent {
   isHiddenPopup: boolean = true;
   newTaskName: string = '';
   newTaskDate: string = '';
+  myForm! : FormGroup;
+
+  status = [
+    {value: 'ALL', content: 'All'},
+    {value: 'DONE', content: 'Done'},
+    {value: 'DOING', content: 'Doing'},
+  ];
+
+  ngOnInit(){
+    this.myForm = new FormGroup({
+      'filter-date': new FormControl((new Date()).toISOString().substring(0,10)),
+      'filter-status': new FormControl(this.status[0].value)
+    });
+  }
+
+  getAllItems(): void {
+    this.store.dispatch(ItemActions.loadItems());
+  }
 
   constructor(private route: ActivatedRoute, private store: Store<State>) {
     route.params.subscribe((val) => {
       this.itemId = this.route.snapshot.params['id'];
       this.getItem(this.itemId);
     });
+  }
+
+  filter(): void{
+    let date = this.myForm.value["filter-date"]
+    let status = this.myForm.value["filter-status"]
+    let filter: Filter = {status, date};
+    console.log(filter)
+    this.store.dispatch(ItemActions.filter({filter}));
   }
 
   updateItem(event: Event): void {

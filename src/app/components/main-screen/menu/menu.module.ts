@@ -5,7 +5,7 @@ import { ItemDetailsComponent } from './item-details/item-details.component';
 import { MenuRoutingModule } from './menu-routing.module';
 import { DescriptionComponent } from './description/description.component';
 import { MenuItemComponent } from './menu-item/menu-item.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     MenuRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     MenuComponent,

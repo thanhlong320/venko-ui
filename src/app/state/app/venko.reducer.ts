@@ -38,6 +38,12 @@ export const venkoReducer = createReducer<VenkoState>(
       items: action.items,
     };
   }),
+  on(ItemsActions.filterSuccess, (state, action): VenkoState => {
+    return {
+      ...state,
+      items: action.filterItems,
+    };
+  }),
   on(ItemsActions.updateItemSuccess, (state, action): VenkoState => {
     let itemsAfterUpdateItem = state.items;
     let indexUpdatedItem = 0;
