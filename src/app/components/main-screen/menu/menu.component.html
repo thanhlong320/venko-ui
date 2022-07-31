@@ -1,0 +1,28 @@
+<div class="left-part">
+  <div class="profile">
+    <a routerLink="">
+      VENKO
+    </a>
+  </div>
+
+    <div class="profile"  *ngIf="isLogged$ | async as isLogged">
+      <h2 class="profile-name">{{username}}</h2>
+    </div>
+    
+    <div class="menu" *ngIf="items$ | async as items" >
+      <ul #ulItems *ngIf="isLogged$ | async as isLogged">
+        <app-menu-item *ngFor="let item of items" [item]="item"></app-menu-item>
+      </ul>
+    </div>
+    <div  *ngIf="isLogged$ | async as isLogged" class="add-new-list" (click)="changePopupState()">
+      <div class="add-new-list-icon_plus"><i class="fa fa-plus"></i></div>
+      <div class="add-new-list-text">New List</div>
+      <div class="add-new-list-icon_list"><i class="fa fa-list-ul"></i></div>
+    </div>
+    <div  *ngIf="isLogged$ | async as isLogged" class="popup-create-new-item" [hidden]="isHiddenPopup">
+      <input type="text" placeholder="New list" [(ngModel)]="newItemName">
+      <button class="btn btn-danger float-end me-3" (click)="changePopupState()">Cancel</button>
+      <button class="btn btn-primary float-end me-2" (click)="createNewItem()">OK</button>
+    </div>
+    <div class="shadow" [hidden]="isHiddenPopup"></div>
+</div>

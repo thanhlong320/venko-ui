@@ -1,0 +1,20 @@
+<div class="login-page d-flex justify-center">
+    <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+        <h1 class="text-center">Login</h1>
+
+        <h5 *ngIf="isShowErrorMessage">{{errorMessage}}</h5>
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+        <input placeholder="Username" type="text" id="form2Example1" class="form-control" formControlName="username"/>
+        </div>
+    
+        <!-- Password input -->
+        <div class="form-outline mb-4">
+        <input placeholder="Password" type="password" id="form2Example2" class="form-control" formControlName="password"/>
+        </div>
+    
+        <div class="button-sign-in">
+            <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,60 @@
+<div class="item-details" *ngIf="item">
+  <div class="list-name">
+    <input
+      class="d-inline"
+      value="{{ item.name }}"
+      (change)="updateItem($event)"
+    />
+    <i class="fa fa-trash me-3 float-end" (click)="deleteItem(item)"></i>
+  </div>
+  <div class="list-items">
+    <ul>
+      <li *ngFor="let task of item.tasks" [class.isDone]="task.isDone">
+        <div class="checkbox-done">
+          <input
+            type="checkbox"
+            [checked]="task.isDone"
+            (click)="changeIsDoneState(task)"
+          />
+        </div>
+        <div class="list_items_details">
+          <input
+            #title
+            (blur)="updateTaskTitle(task, $event)"
+            [class.isDone]="task.isDone"
+            class="list_items_details_title"
+            type="text"
+            value="{{ task.title }}"
+          />
+          <p class="list_items_details_date">
+            <input
+              #date
+              (change)="updateTaskDate(task, $event)"
+              type="date"
+              [class.isDone]="task.isDone"
+              value="{{ task.date }}"
+            />
+          </p>
+        </div>
+        <div class="delete-task" (click)="deleteTask(task)">
+          <i class="fa fa-trash"></i>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="add-new-task" (click)="changePopupState()">
+    <div class="add-new-task-icon_plus"><i class="fa fa-plus"></i></div>
+    <div class="add-new-task-text">New Task</div>
+  </div>
+  <div class="popup-create-new-item" [hidden]="isHiddenPopup">
+    <input type="text" placeholder="New task" [(ngModel)]="newTaskName" />
+    <input type="date" placeholder="Choose date" [(ngModel)]="newTaskDate" />
+    <button class="btn btn-danger float-end me-3" (click)="changePopupState()">
+      Cancel
+    </button>
+    <button class="btn btn-primary float-end me-2" (click)="createNewTask()">
+      OK
+    </button>
+  </div>
+  <div class="shadow" [hidden]="isHiddenPopup"></div>
+</div>

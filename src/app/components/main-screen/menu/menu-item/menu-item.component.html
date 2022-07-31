@@ -1,0 +1,6 @@
+<li>
+  <a routerLink="items/{{ item.id }}">
+    <input type="text" value="{{ item.name }}" [class.active]="isActive" readonly="true" onblur="this.readOnly='true';"
+      ondblclick="this.readOnly='';" title="Double click to edit" />
+  </a>
+</li>
