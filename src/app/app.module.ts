@@ -4,8 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainScreenComponent } from './components/main-screen/main-screen.component';
-import { MenuComponent } from './components/main-screen/menu/menu.component';
-import { ItemDetailsComponent } from './components/main-screen/menu/item-details/item-details.component';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { ItemEffects } from './state/item/item.effects';
@@ -17,12 +15,14 @@ import { TaskEffects } from './state/task/task.effects';
 import { venkoReducer } from './state/app/venko.reducer';
 import { LoginComponent } from './components/main-screen/menu/login/login.component';
 import { RegisterComponent } from './components/main-screen/menu/register/register.component';
+import { ProfileComponent } from './components/main-screen/menu/profile/profile.component';
 @NgModule({
   declarations: [
     AppComponent,
     MainScreenComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfileComponent,
   ],
   imports: [
     StoreModule.forRoot({}),

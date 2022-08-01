@@ -23,4 +23,18 @@ export class TaskEffects {
   });
 
   
+  getUser$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(UserActions.getUser),
+      mergeMap((action) =>
+        this.userService.getUser(action.username).pipe(
+          map((user: User) => {
+            return UserActions.getUserSuccess({ user });
+          })
+        )
+      )
+    );
+  });
+
+  
 }

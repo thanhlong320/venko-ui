@@ -9,12 +9,14 @@ export interface VenkoState {
   items: Item[];
   token: Token;
   isLogged: boolean;
+  user: User;
 }
 
 const initState: VenkoState = {
   items: [],
   token: {} as Token,
-  isLogged: false
+  isLogged: false,
+  user: {} as User
 };
 
 export const venkoReducer = createReducer<VenkoState>(
@@ -23,6 +25,12 @@ export const venkoReducer = createReducer<VenkoState>(
     return {
       ...state,
       isLogged: action.isLogged,
+    };
+  }),
+  on(UserActions.getUserSuccess, (state, action): VenkoState => {
+    return {
+      ...state,
+      user: action.user,
     };
   }),
   on(UserActions.loginSuccess, (state, action): VenkoState => {

@@ -11,3 +11,5 @@ const itemSelector = createFeatureSelector<VenkoState>('app');
 export const getItems = createSelector(itemSelector, (state) => state.items);
 
 export const getIsLogged = createSelector(itemSelector, (state) => state.isLogged);
+
+export const getUser = createSelector(itemSelector, (state) => state.user);

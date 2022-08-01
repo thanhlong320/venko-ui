@@ -16,3 +16,14 @@ export const updateIsLogged = createAction(
     '[User] Update isLogged',
     props<{ isLogged: boolean }>()
 );
+
+
+export const getUser = createAction(
+    '[User] Get User',
+    props<{ username: string | null}>()
+);
+
+export const getUserSuccess = createAction(
+    '[User] Get User success',
+    props<{ user: User }>()
+);

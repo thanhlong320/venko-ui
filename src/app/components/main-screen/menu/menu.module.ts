@@ -6,6 +6,7 @@ import { MenuRoutingModule } from './menu-routing.module';
 import { DescriptionComponent } from './description/description.component';
 import { MenuItemComponent } from './menu-item/menu-item.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
